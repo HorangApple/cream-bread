@@ -1,12 +1,12 @@
 import React from "react";
 import Routes from "routes/Routes";
 import { MainLayout } from "components/templates";
+import { SideBar } from "components/organisms";
 
 const Main = () => {
-  const contents = Routes;
   return (
     <div>
-      <MainLayout />
+      <MainLayout Side={SideBar} Contents={Routes} />
     </div>
   );
 };

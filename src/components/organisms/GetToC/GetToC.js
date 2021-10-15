@@ -1,12 +1,14 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Input } from "antd";
 import * as api from "api";
+import { BookCard } from "components/molecules";
 
 const { Search } = Input;
 
 const GetToC = () => {
   const [keyWord, setKeyWord] = useState("");
   const [searchResult, setSearchResult] = useState(null);
+  const [popUp, setPopUp] = useState(null);
   const isInit = useRef(true);
 
   const handleChange = (e) => {
@@ -28,9 +30,10 @@ const GetToC = () => {
     <div>
       <Search value={keyWord} onChange={handleChange} />
       <div>
-        {searchResult.items.map((item) => (
-          <div>{item.title}</div>
-        ))}
+        {searchResult != null &&
+          searchResult.items.map((item, index) => (
+            <BookCard key={index} setPopUp={setPopUp} {...item} />
+          ))}
       </div>
     </div>
   );

@@ -1,0 +1,17 @@
+const { createProxyMiddleware } = require("http-proxy-middleware");
+module.exports = (app) => {
+  app.use(
+    "/bookdb",
+    createProxyMiddleware({
+      target: "https://book.naver.com",
+      changeOrigin: true,
+    })
+  );
+  app.use(
+    "/v1",
+    createProxyMiddleware({
+      target: "https://openapi.naver.com",
+      changeOrigin: true,
+    })
+  );
+};

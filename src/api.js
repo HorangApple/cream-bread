@@ -13,3 +13,9 @@ export const getBookSearch = (keyword, page) => {
 
   return axios.get(url, { headers: header });
 };
+
+export const getToC = (keyword, page) => {
+  let url = `/bookdb/book_detail.php?bid=20941240`;
+
+  return axios.get(url);
+};

@@ -26,7 +26,7 @@ const GetToC = () => {
 
   const onSearch = () => {
     if (keyWord.length > 0) {
-      api.getBookSearch(keyWord, 1, 12).then((res) => {
+      api.getBookSearch(escape(keyWord), 1, 12).then((res) => {
         setSearchResult(res.data);
       });
     } else {
@@ -51,7 +51,7 @@ const GetToC = () => {
         enterButton
       />
       <Row>
-        {searchResult != null &&
+        {searchResult?.List != null &&
           searchResult.List.map((item, index) => (
             <Col key={index} sm={24} md={8} lg={6} style={{ width: "100%" }}>
               <BookCard setPopUp={setPopUp} {...item} />

@@ -2,42 +2,22 @@ import React from "react";
 import { Card } from "antd";
 import { BarsOutlined, GlobalOutlined } from "@ant-design/icons";
 import BookCardStyleWrapper from "./BookCardStyleWrapper";
-import * as api from "api";
-
-const Crawler = require("crawler");
 
 const BookCard = (props) => {
-  const { title, link, image, author, publisher, pubdate, setPopUp } = props;
+  const { GOODS_NM, GOODS_NO, AUTH_INFO, COMPANY2, ISS_DM, setPopUp } = props;
+  const imgUrl = `http://image.yes24.com/Goods/${GOODS_NO}/L`;
+  const bookUrl = `http://www.yes24.com/Product/Goods/${GOODS_NO}`;
   const handleClick = (type) => () => {
-    api.getToC().then((res) => {
-      console.log(res);
-    });
     if (type === "link") {
-      window.open(link);
+      window.open(bookUrl);
     } else {
-      setPopUp(true);
-      const c = new Crawler({
-        maxConnections: 10,
-        // This will be called for each crawled page
-        callback: (error, res, done) => {
-          if (error) {
-            console.log(error);
-          } else {
-            const $ = res.$;
-            // $ is Cheerio by default
-            //a lean implementation of core jQuery designed specifically for the server
-            console.log($("#tableOfContentsContent").text());
-          }
-          done();
-        },
-      });
-      c.queue("https://book.naver.com/bookdb/book_detail.php?bid=20941240");
+      setPopUp({ bookNum: GOODS_NO, isPopUp: true });
     }
   };
   return (
     <BookCardStyleWrapper>
       <Card
-        title={title}
+        title={GOODS_NM}
         bordered={false}
         style={{ width: 300 }}
         actions={[
@@ -46,20 +26,20 @@ const BookCard = (props) => {
         ]}
       >
         <div className={"book-thumb"}>
-          <img src={image} alt={"책 표지"} />
+          <img src={imgUrl} alt={"책 표지"} className={"book-thumb-img"} />
         </div>
         <div className={"book-info"}>
           <p>
             <span className={"book-info-key"}>저자 :</span>
-            <span className={"book-info-value"}>{author}</span>
+            <span className={"book-info-value"}>{AUTH_INFO}</span>
           </p>
           <p>
             <span className={"book-info-key"}>출판사 :</span>
-            <span className={"book-info-value"}>{publisher}</span>
+            <span className={"book-info-value"}>{COMPANY2}</span>
           </p>
           <p>
             <span className={"book-info-key"}>출판날짜 :</span>
-            <span className={"book-info-value"}>{pubdate}</span>
+            <span className={"book-info-value"}>{ISS_DM}</span>
           </p>
         </div>
       </Card>

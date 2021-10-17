@@ -1,21 +1,13 @@
 const axios = require("axios").default;
 
-export const getBookSearch = (keyword, page) => {
-  const header = {
-    "X-Naver-Client-Id": process.env.REACT_APP_CLIENT,
-    "X-Naver-Client-Secret": process.env.REACT_APP_SECRET,
-  };
-  let url = `/v1/search/book.json?query=${keyword}`;
+export const getToC = (bookNum) => {
+  let url = `/Product/Goods/${bookNum}`;
 
-  if (page != null) {
-    url += `&start=${page}`;
-  }
-
-  return axios.get(url, { headers: header });
+  return axios.get(url);
 };
 
-export const getToC = (keyword, page) => {
-  let url = `/bookdb/book_detail.php?bid=20941240`;
+export const getBookSearch = (keyword, page, pageSize) => {
+  let url = `/SearchCorner/Sniper/GetSniperSearch?Query=${keyword}&Parsing=false&Domain=1&Page=${page}&PageSize=${pageSize}&_=1634367591073`;
 
   return axios.get(url);
 };

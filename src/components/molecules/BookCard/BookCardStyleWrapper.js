@@ -15,6 +15,11 @@ const BookCardStyleWrapper = styled.div`
       margin-left: 10px;
     }
   }
+  .book-thumb {
+    .book-thumb-img {
+      width: 100px;
+    }
+  }
 `;
 
 export default BookCardStyleWrapper;

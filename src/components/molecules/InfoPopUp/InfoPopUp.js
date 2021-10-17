@@ -12,16 +12,18 @@ const InfoPopUp = (props) => {
   const [content, setContent] = useState(null);
 
   useEffect(() => {
-    api.getToC(bookNum).then((res) => {
-      const page = res.data;
-      const $ = cheerio.load(page);
-      const text = $(".txtContentText", "#infoset_toc")
-        .text()
-        .replaceAll(/<[/b]+>/g, "")
-        .replaceAll(/<br\/>/g, "\n");
+    if (bookNum != null) {
+      api.getToC(bookNum).then((res) => {
+        const page = res.data;
+        const $ = cheerio.load(page);
+        const text = $(".txtContentText", "#infoset_toc")
+          .text()
+          .replaceAll(/<[/b]+>/g, "")
+          .replaceAll(/<br\/>/g, "\n");
 
-      setContent(text);
-    });
+        setContent(text);
+      });
+    }
     return () => {
       setContent(null);
     };

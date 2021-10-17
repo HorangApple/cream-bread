@@ -9,11 +9,8 @@ const SideBar = () => {
     <Sider
       breakpoint="lg"
       collapsedWidth="0"
-      onBreakpoint={(broken) => {
-        console.log(broken);
-      }}
-      onCollapse={(collapsed, type) => {
-        console.log(collapsed, type);
+      style={{
+        minHeight: document.getElementsByTagName("body")[0].offsetHeight,
       }}
     >
       <div className="logo" />

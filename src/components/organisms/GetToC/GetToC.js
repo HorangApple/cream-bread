@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Input } from "antd";
+import { Input, Row, Col } from "antd";
 import * as api from "api";
 import { BookCard, InfoPopUp } from "components/molecules";
 
@@ -27,23 +27,40 @@ const GetToC = () => {
 
   useEffect(() => {
     if (!isInit.current) {
-      api.getBookSearch(keyWord, 1, 10).then((res) => {
-        setSearchResult(res.data);
-      });
+      if (keyWord.length > 0) {
+        api.getBookSearch(keyWord, 1, 12).then((res) => {
+          setSearchResult(res.data);
+        });
+      } else {
+        setSearchResult(null);
+      }
     } else {
       isInit.current = false;
     }
   }, [keyWord]);
 
   return (
-    <div>
-      <Search value={keyWord} onChange={handleChange} />
-      <div>
+    <>
+      <Search
+        value={keyWord}
+        size={"large"}
+        onChange={handleChange}
+        style={{
+          maxWidth: "300px",
+          position: "relative",
+          left: "50%",
+          transform: "translateX(-50%)",
+          marginBottom: "25px",
+        }}
+      />
+      <Row>
         {searchResult != null &&
           searchResult.List.map((item, index) => (
-            <BookCard key={index} setPopUp={setPopUp} {...item} />
+            <Col key={index} sm={24} md={8} lg={6}>
+              <BookCard setPopUp={setPopUp} {...item} />
+            </Col>
           ))}
-      </div>
+      </Row>
       <InfoPopUp
         bookNum={popUp.bookNum}
         modalConfig={{
@@ -54,7 +71,7 @@ const GetToC = () => {
           cancelButtonProps: { style: { display: "none" } },
         }}
       />
-    </div>
+    </>
   );
 };
 

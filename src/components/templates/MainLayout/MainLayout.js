@@ -15,15 +15,11 @@ const MainLayout = (props) => {
           <Header
             className="site-layout-sub-header-background"
             style={{ padding: 0 }}
-          />
+          >
+            <div className={"header"}>🍞</div>
+          </Header>
           <Content style={{ margin: "24px 16px 0" }}>
             <Contents />
-            <div
-              className="site-layout-background"
-              style={{ padding: 24, minHeight: 360 }}
-            >
-              contents
-            </div>
           </Content>
           <Footer style={{ textAlign: "center" }}>
             CreamBread ©2021 Created by JM

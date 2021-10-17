@@ -14,12 +14,21 @@ const BookCard = (props) => {
       setPopUp({ bookNum: GOODS_NO, isPopUp: true });
     }
   };
+
+  const time = `${ISS_DM.slice(0, 4)}.${ISS_DM.slice(4, 6)}.${ISS_DM.slice(
+    6,
+    8
+  )}`;
+
+  const auth = AUTH_INFO.replaceAll("`", "")
+    .replaceAll("<", "")
+    .replaceAll(">", "");
+
   return (
     <BookCardStyleWrapper>
       <Card
-        title={GOODS_NM}
+        title={GOODS_NM.replaceAll(/<\/*span[\w=": #;]*>/g, "")}
         bordered={false}
-        style={{ width: 300 }}
         actions={[
           <GlobalOutlined onClick={handleClick("link")} />,
           <BarsOutlined onClick={handleClick("popup")} />,
@@ -31,15 +40,19 @@ const BookCard = (props) => {
         <div className={"book-info"}>
           <p>
             <span className={"book-info-key"}>저자 :</span>
-            <span className={"book-info-value"}>{AUTH_INFO}</span>
+            <span className={"book-info-value"} title={auth}>
+              {auth.length > 15 ? auth.slice(0, 17) + "..." : auth}
+            </span>
           </p>
           <p>
             <span className={"book-info-key"}>출판사 :</span>
-            <span className={"book-info-value"}>{COMPANY2}</span>
+            <span className={"book-info-value"}>
+              {COMPANY2.replaceAll("`", "")}
+            </span>
           </p>
           <p>
             <span className={"book-info-key"}>출판날짜 :</span>
-            <span className={"book-info-value"}>{ISS_DM}</span>
+            <span className={"book-info-value"}>{time}</span>
           </p>
         </div>
       </Card>

@@ -15,6 +15,12 @@ const MainLayoutStyleWrapper = styled.div`
   .site-layout-background {
     background: #fff;
   }
+
+  .header {
+    font-size: 3rem;
+    display: flex;
+    justify-content: center;
+  }
 `;
 
 export default MainLayoutStyleWrapper;

@@ -36,7 +36,7 @@ const InfoPopUp = (props) => {
           <TextArea
             className={"toc-content"}
             value={content}
-            editable={false}
+            readOnly={true}
             bordered={false}
           />
         ) : (

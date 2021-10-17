@@ -14,7 +14,7 @@ const SideBar = () => {
       }}
     >
       <div className="logo" />
-      <Menu theme="dark" mode="inline" defaultSelectedKeys={["4"]}>
+      <Menu theme="dark" mode="inline" defaultSelectedKeys={["1"]}>
         <Menu.Item key="1" icon={<FileTextOutlined />}>
           <Link to={"/getToC"}>Get 목차</Link>
         </Menu.Item>

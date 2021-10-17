@@ -2,6 +2,7 @@
   "name": "cream-bread",
   "version": "0.1.0",
   "private": true,
+  "homepage": "http://localhost:3000/getToC",
   "dependencies": {
     "@ant-design/icons": "^4.7.0",
     "@testing-library/jest-dom": "^5.11.4",

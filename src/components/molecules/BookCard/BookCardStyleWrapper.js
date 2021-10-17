@@ -15,6 +15,7 @@ const BookCardStyleWrapper = styled.div`
 
   .book-info {
     margin-left: 10px;
+    overflow-y: auto;
     .book-info-key {
     }
 
